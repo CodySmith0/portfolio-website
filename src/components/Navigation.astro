@@ -1,0 +1,59 @@
+---
+import Contact from '../components/Contact.svelte'
+---
+
+<nav>
+    <div id="items">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+    </div>
+    <div id="contact"> 
+        <Contact client:load /> 
+    </div>
+</nav>
+
+<style>
+    
+    #items {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        float: left
+    }
+    nav {
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+        height: 3.5rem;
+        width: 100%;
+        display: flex;  
+        position: fixed;
+        background-color: rgba(126, 177, 172, .98);
+    }
+    a {
+        float: left;
+        font-weight: bold;
+        font-size: 18px;
+        color: #102542;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+        text-align: center;
+    }
+    #contact {
+        position: fixed;
+        appearance: fixed;
+        line-height: 1.25rem;
+        padding-top: 0.625;
+        padding-bottom: 0.625;
+        white-space: nowrap;
+        right: 3rem;
+    }
+    @media (max-width: 730px) {
+        #contact {
+            right: 1.5rem;
+        }
+    }
+</style>
