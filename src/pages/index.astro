@@ -59,6 +59,27 @@ import Navigation from '../components/Navigation.astro';
 
 	const hiddenElements = document.querySelectorAll('.hidden');
 	hiddenElements.forEach((el) => observer.observe(el))
+
+	const section = document.getElementById('projects');
+
+  // Function to dynamically adjust section height based on content
+ 	function adjustSectionHeight() {
+ 	  	// Reset the height to auto to get the natural height of the content
+ 	  	section.style.height = 'auto';
+		
+ 	  	// Get the computed height of the content
+ 	  	const contentHeight = section.scrollHeight;
+		
+ 	  	// Set the height of the section to match the height of the content
+ 	  	section.style.height = contentHeight + 'px';
+ 	}
+
+ 	// Call the function initially and whenever content changes
+ 	adjustSectionHeight();
+ 	// Example: If content changes dynamically, call adjustSectionHeight() after the change.
+
+ 	// You might also want to call adjustSectionHeight() after the window is resized.
+ 	window.addEventListener('resize', adjustSectionHeight);
 </script>
 
 <Layout title="Fizzled">
@@ -134,29 +155,30 @@ import Navigation from '../components/Navigation.astro';
 			Projects
 		</h2>
 		<div class="project">
-				<div class="project project-item-left">
-					<div class="project-image-container-left">
-						<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
+			<div class="project project-item-left">
+				<div class="project-image-container-left">
+					<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
+				</div>
+				<div class="project-text-container-left">
+					<div class="project-title">
+						Filler Project
+						<span class="technologies">
+							whatever.js | c++ | python | ummm | idk | something
+						</span>
 					</div>
-					<div class="project-text-container-left">
-						<div class="project-title">
-							Filler Project
-							<span class="technologies">
-								whatever.js | c++ | python | ummm | idk | something
-							</span>
-						</div>
-						<div class="project-text">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</div>
-						<a class="project-button" href="https:/fizzled.dev" target="_blank">
-							Live Version
-						</a>
-						<a class="project-button" href="https:/fizzled.dev" target="_blank">
-							Github
-						</a>
+					<div class="project-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</div>
+					<a class="project-button" href="https:/fizzled.dev" target="_blank">
+						Live Version
+					</a>
+					<a class="project-button" href="https:/fizzled.dev" target="_blank">
+						Github
+					</a>
 				</div>
 			</div>
+		</div>
+		<div class="project-right">
 			<div class="project project-item-right">
 				<div class="project-text-container-right">
 					<div class="project-title">
@@ -180,6 +202,31 @@ import Navigation from '../components/Navigation.astro';
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="project">
+		<div class="project project-item-left">
+			<div class="project-image-container-left">
+				<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
+			</div>
+			<div class="project-text-container-left">
+				<div class="project-title">
+					Filler Project
+					<span class="technologies">
+						whatever.js | c++ | python | ummm | idk | something
+					</span>
+				</div>
+				<div class="project-text">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<a class="project-button" href="https:/fizzled.dev" target="_blank">
+					Live Version
+				</a>
+				<a class="project-button" href="https:/fizzled.dev" target="_blank">
+					Github
+				</a>
+			</div>
+		</div>
+	</div>
 	</section>
 </Layout>
 
@@ -332,7 +379,6 @@ import Navigation from '../components/Navigation.astro';
 		z-index: 2;
 	}
 	#projects {
-		height: 100rem;
 		position: relative;
 		z-index: 3;
 		background-color: #CDD7D6;
@@ -360,6 +406,7 @@ import Navigation from '../components/Navigation.astro';
 		display: flex;
 		margin-bottom: 3rem;
 		justify-content: flex-start;
+		clear: both;
 	}
 	.project-item-left {
 		align-self: flex-start;
@@ -726,6 +773,7 @@ import Navigation from '../components/Navigation.astro';
 		}
 		.project-text-container-left{
 			height: 224px;
+			margin-left: 1rem;
 		}
 		.project-text-container-right{
 			height: 224px;
@@ -733,6 +781,7 @@ import Navigation from '../components/Navigation.astro';
 		.project-item-left {
 			margin-left: auto;
        		margin-right: auto;
+			float: none;
 		}
 		.project-item-right {
 			margin-left: auto;
