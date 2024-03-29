@@ -62,7 +62,7 @@
         <h2>{title}</h2>
         <div id="actions">
           <button id="close" on:click={closeModal}>
-            <img src="x-symbol-svgrepo-com.svg"/>
+            <img src="x-symbol-svgrepo-com.svg" alt="Close button">
           </button>	
         </div>				
       </div>

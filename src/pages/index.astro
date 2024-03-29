@@ -44,6 +44,8 @@ import Navigation from '../components/Navigation.astro';
   	};
 	typingEffect();
 
+
+
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
 			console.log(entry)
@@ -83,7 +85,7 @@ import Navigation from '../components/Navigation.astro';
 					<image xlink:href="profile.svg" width="100%" height="100%" />
 				</svg>
 				<div id="about-text" style="color: #102542; font-size: 20px; font-weight: bold;">
-					I'm an aspiring software developer with a love of problem solving. I frequently take on projects that push the boundaries of my knowledge to further develope my abilities as a developer. My goal with every project I take on is to produce not only an effective product but one that is also enjoyable for the end user, this website included. If I'm not programming, I'm most likely either playing videogames, doing school work, or hanging out with my dogs. 
+					I'm an aspiring software developer with a love of problem solving. I frequently take on projects that push the boundaries of my knowledge to further develope my abilities as a programmer. My goal with every project I take on is to produce not only an effective product but one that is also enjoyable for the end user, this website included. If I'm not programming, I'm most likely playing videogames, doing school work, or hanging out with my dogs. 
 				</div>
 			</div>
 			<div id="spacer"/>
@@ -132,10 +134,9 @@ import Navigation from '../components/Navigation.astro';
 			Projects
 		</h2>
 		<div class="project">
-			<div id="project-content">
 				<div class="project project-item-left">
 					<div class="project-image-container-left">
-						<img src="filler-image.PNG" alt="Temp photo until I have some projects">
+						<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
 					</div>
 					<div class="project-text-container-left">
 						<div class="project-title">
@@ -147,10 +148,15 @@ import Navigation from '../components/Navigation.astro';
 						<div class="project-text">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 						</div>
+						<a class="project-button" href="https:/fizzled.dev" target="_blank">
+							Live Version
+						</a>
+						<a class="project-button" href="https:/fizzled.dev" target="_blank">
+							Github
+						</a>
 					</div>
 				</div>
 			</div>
-		</div>
 			<div class="project project-item-right">
 				<div class="project-text-container-right">
 					<div class="project-title">
@@ -162,9 +168,15 @@ import Navigation from '../components/Navigation.astro';
 					<div class="project-text">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</div>
+					<a class="project-button" href="https:/fizzled.dev" target="_blank">
+						Live Version
+					</a>
+					<a class="project-button" href="https:/fizzled.dev" target="_blank">
+						Github
+					</a>
 				</div>
 				<div class="project-image-container-right">
-					<img src="filler-image.PNG" alt="Temp photo until I have some projects">
+					<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
 				</div>
 			</div>
 		</div>
@@ -186,7 +198,7 @@ import Navigation from '../components/Navigation.astro';
 		border: double 3px transparent;
 		border-image-slice: 1;
 		border-width: 4px;
-		background-image: linear-gradient(#CDD7D6, #CDD7D6),radial-gradient(circle at top left, #102542, #DE541E);
+		background-image: linear-gradient(#CDD7D6, #CDD7D6),radial-gradient(circle at bottom right, #102542, #DE541E);
 		border-radius: 10px;
 		background-clip: content-box, border-box;
 		overflow: hidden;
@@ -320,7 +332,7 @@ import Navigation from '../components/Navigation.astro';
 		z-index: 2;
 	}
 	#projects {
-		height: 200rem;
+		height: 100rem;
 		position: relative;
 		z-index: 3;
 		background-color: #CDD7D6;
@@ -364,12 +376,23 @@ import Navigation from '../components/Navigation.astro';
 		background-color: #7eb1ac;
 		display: flex;
 		align-items: center;
+		border-radius: 4px;
 	}
 	.project-image-container-left img{
 		margin-left: 25px;
-		max-width:900px;
-  		width: auto;
+		max-width: 900px;
   		height: auto;
+	}
+	.project-image-container-left img.hidden {
+		opacity: 0;
+		filter: blur(4px);
+		transform: translateX(-100%);
+		transition: all 1000ms ease-in-out;
+	}
+	.project-image-container-left img.show {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateX(0);
 	}
 	.project-image-container-right{
 		position: relative;
@@ -379,13 +402,24 @@ import Navigation from '../components/Navigation.astro';
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
+		border-radius: 4px;
 	}
 	.project-image-container-right img{
 		margin-right: 25px;
 		max-width:900px;
-  		width: auto;
   		height: auto;
 		float: right;
+	}
+	.project-image-container-right img.hidden {
+		opacity: 0;
+		filter: blur(4px);
+		transform: translateX(100%);
+		transition: all 1000ms ease-in-out;
+	}
+	.project-image-container-right img.show {
+		opacity: 1;
+		filter: blur(0);
+		transform: translateX(0);
 	}
 	.project-text-container-left{
 		height: 550px;
@@ -402,18 +436,39 @@ import Navigation from '../components/Navigation.astro';
 	.project-title{
 		color: #102542;
 		font-weight: bold;
-		font-size: 35px;
+		font-size: 40px;
 	}
 	.technologies{
 		color: #DE541E;
 		font-weight: bold;
-		font-size: 12px;
+		font-size: 14px;
 	}
 	.project-text{
 		color: #102542;
 		font-weight: bold;
+		font-size: 18px;
 		margin-top: 10px;
 	}
+	.project-button{
+		background-color: rgb(238, 198, 108);
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-size: 16px;
+        color: #102542;
+        font-weight: bold;
+        transition: .25s;
+		width: 100px;
+	}
+	.project-button:hover {
+        background-color: rgb(202, 167, 86);
+        transition: 0.25s;
+    }
 	@media (max-width: 1280px) {
 		#about {
 			height: 85rem;
@@ -425,6 +480,269 @@ import Navigation from '../components/Navigation.astro';
 		#spacer {
 			width: 0px;
 			height: 100px;
+		}
+	}
+	@media (max-width: 1700px) {
+		.project-image-container-left{
+			margin-top: .8rem;
+			width: 800px;
+			height: 440px;
+		}
+		.project-image-container-right{
+			width: 800px;
+			height: 440px;
+		}
+		.project-image-container-right img{
+			margin-right: 20px;
+			max-width: 720px;
+		}
+		.project-image-container-left img{
+			margin-left: 20px;
+			max-width: 720px;
+		}
+		.project{
+			margin-bottom: 2.4rem;
+		}
+		.project-text-container-left{
+			height: 440px;
+		}
+		.project-text-container-right{
+			height: 440px;
+		}
+	}
+	@media (max-width: 1500px) {
+		.project-image-container-left{
+			width: 640px;
+			height: 352px;
+		}
+		.project-image-container-right{
+			width: 640px;
+			height: 352px;
+		}
+		.project-image-container-right img{
+			margin-right: 16px;
+			max-width: 576px;
+		}
+		.project-image-container-left img{
+			margin-left: 16px;
+			max-width: 576px;
+		}
+		.project{
+			margin-bottom: 1.92rem;
+		}
+		.project-text-container-left{
+			height: 352px;
+		}
+		.project-text-container-right{
+			height: 352px;
+		}
+	}
+	@media (max-width: 1350px) {
+		.project-image-container-left{
+			width: 512px;
+			height: 281px;
+		}
+		.project-image-container-right{
+			width: 512px;
+			height: 281px;
+		}
+		.project-image-container-right img{
+			margin-right: 13px;
+			max-width: 460px;
+		}
+		.project-image-container-left img{
+			margin-left: 13px;
+			max-width: 460px;
+		}
+		.project-title{
+			font-size: 30px;
+		}
+		.technologies{
+			font-size: 14px;
+		}
+		.project-text{
+			font-size: 16px;
+			margin-top: 10px;
+		}
+		.project-button{
+    	    padding: 10px 20px;
+    	    margin-top: 20px;
+    	    font-size: 16px;
+			width: 100px;
+		}
+		.project{
+			margin-bottom: 1.536rem;
+		}
+		.project-text-container-left{
+			height: 281px;
+		}
+		.project-text-container-right{
+			height: 281px;
+		}
+	}
+	@media (max-width: 1210px) {
+		.project-image-container-left{
+			width: 410px;
+			height: 224px;
+		}
+		.project-image-container-right{
+			width: 410px;
+			height: 224px;
+		}
+		.project-image-container-right img{
+			margin-right: 11px;
+			max-width: 368px;
+		}
+		.project-image-container-left img{
+			margin-left: 11px;
+			max-width: 368px;
+		}
+		.project-title{
+			font-size: 30px;
+		}
+		.technologies{
+			font-size: 12px;
+		}
+		.project-text{
+			font-size: 14px;
+			margin-top: 10px;
+		}
+		.project-button{
+    	    padding: 10px 20px;
+    	    margin-top: 20px;
+    	    font-size: 14px;
+			width: 80px;
+		}
+		.project{
+			margin-bottom: 1.2288rem;
+		}
+		.project-text-container-left{
+			height: 224px;
+		}
+		.project-text-container-right{
+			height: 224px;
+		}
+	}
+	@media (max-width: 1110px) {
+		.project-image-container-left{
+			width: 328px;
+			height: 179px;
+		}
+		.project-image-container-right{
+			width: 328px;
+			height: 179px;
+		}
+		.project-image-container-right img{
+			margin-right: 9px;
+			max-width: 294px;
+		}
+		.project-image-container-left img{
+			margin-left: 9px;
+			max-width: 294px;
+		}
+		.project{
+			margin-bottom: 0.98304rem;
+		}
+		.project-text-container-left{
+			height: 224px;
+		}
+		.project-text-container-right{
+			height: 224px;
+		}
+	}
+	@media (max-width: 1030px) {
+		.project-image-container-left{
+			width: 262px;
+			height: 143px;
+		}
+		.project-image-container-right{
+			width: 262px;
+			height: 143px;
+		}
+		.project-image-container-right img{
+			margin-right: 7px;
+			max-width: 235px;
+		}
+		.project-image-container-left img{
+			margin-left: 7px;
+			max-width: 235px;
+		}
+		.project{
+			margin-bottom: 0.98304rem;
+		}
+		.project-text-container-left{
+			height: 224px;
+		}
+		.project-text-container-right{
+			height: 224px;
+		}
+	}
+	@media (max-width: 960px) {
+		.project-image-container-left{
+			width: 210px;
+			height: 114px;
+		}
+		.project-image-container-right{
+			width: 210px;
+			height: 114px;
+		}
+		.project-image-container-right img{
+			margin-right: 5px;
+			max-width: 188px;
+		}
+		.project-image-container-left img{
+			margin-left: 5px;
+			max-width: 188px;
+		}
+		.project{
+			margin-bottom: 0.98304rem;
+		}
+		.project-text-container-left{
+			height: 224px;
+		}
+		.project-text-container-right{
+			height: 224px;
+		}
+	}
+	@media (max-width: 910px) {
+		.project-image-container-left{
+			width: 0px;
+			height: 0px;
+		}
+		.project-image-container-right{
+			width: 0px;
+			height: 0px;
+		}
+		.project-image-container-right img{
+			margin-right: 0px;
+			max-width: 0px;
+		}
+		.project-image-container-left img{
+			margin-left: 0px;
+			max-width: 0px;
+		}
+		.project{
+			margin-bottom: 0.98304rem;
+		}
+		.project-text-container-left{
+			height: 224px;
+		}
+		.project-text-container-right{
+			height: 224px;
+		}
+		.project-item-left {
+			margin-left: auto;
+       		margin-right: auto;
+		}
+		.project-item-right {
+			margin-left: auto;
+        	margin-right: auto;	
+			float: none;
+		}
+		.project-text-container-left,
+    	.project-text-container-right {
+        	margin-left: auto;
+        	margin-right: auto;
 		}
 	}
 </style>
