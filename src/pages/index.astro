@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+import About from '../components/AboutContent.svelte';
 ---
 
 <script>
 	const words = ["Software Developer", "CS Student",  "Tech Enthusiast"];
-	import { sequence } from "astro:middleware";
 	let i = 0;
 	let timer;
 
@@ -44,7 +44,12 @@ import Navigation from '../components/Navigation.astro';
   	};
 	typingEffect();
 
+	let ageElement = document.getElementById("age");
 
+    setInterval(() => {
+    	let time = (Date.now() - (new Date('02/02/2004')).getTime()) / (1000 * 60 * 60 * 24 * 365.242199); // milliseconds per year
+    	ageElement.innerText = time.toString().substring(0, 12);
+    }, 50);
 
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
@@ -62,23 +67,13 @@ import Navigation from '../components/Navigation.astro';
 
 	const section = document.getElementById('projects');
 
-  // Function to dynamically adjust section height based on content
  	function adjustSectionHeight() {
- 	  	// Reset the height to auto to get the natural height of the content
  	  	section.style.height = 'auto';
-		
- 	  	// Get the computed height of the content
  	  	const contentHeight = section.scrollHeight;
-		
- 	  	// Set the height of the section to match the height of the content
  	  	section.style.height = contentHeight + 'px';
  	}
 
- 	// Call the function initially and whenever content changes
  	adjustSectionHeight();
- 	// Example: If content changes dynamically, call adjustSectionHeight() after the change.
-
- 	// You might also want to call adjustSectionHeight() after the window is resized.
  	window.addEventListener('resize', adjustSectionHeight);
 </script>
 
@@ -88,10 +83,10 @@ import Navigation from '../components/Navigation.astro';
 		<div style="display:flex; justify-content:center; align-items:center; height:calc(100vh - 6.25rem)">
 			<h1 style="text-align: center; font-size: 50px; position: fixed;">
 				<div style="color: #102542">
-					Hello, I'm Cody.
+					Hey, I'm Cody.
 				</div>
 				<div style="color: #102542">
-					I'm a&nbsp;<span id="word" style ="color:#DE541E;"></span><span>|</span>
+					I'm a&nbsp;<span id="word" style ="color:#d04f1c"></span><span>|</span>
 				</div>
 			</h1>
 		</div>
@@ -106,47 +101,16 @@ import Navigation from '../components/Navigation.astro';
 					<image xlink:href="profile.svg" width="100%" height="100%" />
 				</svg>
 				<div id="about-text" style="color: #102542; font-size: 20px; font-weight: bold;">
-					I'm an aspiring software developer with a love of problem solving. I frequently take on projects that push the boundaries of my knowledge to further develope my abilities as a programmer. My goal with every project I take on is to produce not only an effective product but one that is also enjoyable for the end user, this website included. If I'm not programming, I'm most likely playing videogames, doing school work, or hanging out with my dogs. 
+					I'm an aspiring software developer with a love of problem solving. I frequently take on projects that push the boundaries of my knowledge to further develop my abilities as a programmer. My goal with every project I take on is to produce not only an effective product but one that is enjoyable for the end user as well, this website included. If I'm not programming, I'm most likely playing videogames, doing school work, or hanging out with my dogs. 
 				</div>
 			</div>
 			<div id="spacer"/>
-			<div id="icons">
-				<div id="tech-row">
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-				</div>
-				<div id="tech-row">
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-				</div>
-				<div id="tech-row">
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-					<div id="tech-box" class="hidden">
-						
-					</div>
-				</div>
+			<div class="about-container">
+				<ul class="about-list">
+					<li>I am <span id=age></span> years old</li>
+					<li>I have made <span id="commits"></span> Github commits this year</li>
+					<li>AHHHH</li>
+				</ul>
 			</div>
 		</div>
 	</section>
@@ -157,7 +121,7 @@ import Navigation from '../components/Navigation.astro';
 		<div class="project">
 			<div class="project project-item-left">
 				<div class="project-image-container-left">
-					<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
+					<img class="hidden" src="filler-image.jpg" alt="Temp photo until I have some projects">
 				</div>
 				<div class="project-text-container-left">
 					<div class="project-title">
@@ -198,7 +162,7 @@ import Navigation from '../components/Navigation.astro';
 					</a>
 				</div>
 				<div class="project-image-container-right">
-					<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
+					<img class="hidden" src="filler-image.jpg" alt="Temp photo until I have some projects">
 				</div>
 			</div>
 		</div>
@@ -206,7 +170,7 @@ import Navigation from '../components/Navigation.astro';
 	<div class="project">
 		<div class="project project-item-left">
 			<div class="project-image-container-left">
-				<img class="hidden" src="filler-image.PNG" alt="Temp photo until I have some projects">
+				<img class="hidden" src="filler-image.jpg" alt="Temp photo until I have some projects">
 			</div>
 			<div class="project-text-container-left">
 				<div class="project-title">
@@ -305,7 +269,6 @@ import Navigation from '../components/Navigation.astro';
 		width: 100%;
 	}
 	.profile-svg {
-		
 		width: 300px;
 		height: auto;
 	}
@@ -367,7 +330,7 @@ import Navigation from '../components/Navigation.astro';
 	}
 	#home {
 		height: 100vh;
-		background-color: #7eb1ac;
+		background-color: #9bc2bf;
 		box-sizing: border-box;
 		position: relative;
 		width: 100%;
@@ -420,7 +383,7 @@ import Navigation from '../components/Navigation.astro';
 		position: relative;
 		height: 550px;
 		width: 1000px;
-		background-color: #7eb1ac;
+		background-color: #9bc2bf;
 		display: flex;
 		align-items: center;
 		border-radius: 4px;
@@ -445,7 +408,7 @@ import Navigation from '../components/Navigation.astro';
 		position: relative;
 		height: 550px;
 		width: 1000px;
-		background-color: #7eb1ac;
+		background-color: #9bc2bf;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -486,7 +449,7 @@ import Navigation from '../components/Navigation.astro';
 		font-size: 40px;
 	}
 	.technologies{
-		color: #DE541E;
+		color: #d04f1c;
 		font-weight: bold;
 		font-size: 14px;
 	}
@@ -515,6 +478,18 @@ import Navigation from '../components/Navigation.astro';
 	.project-button:hover {
         background-color: rgb(202, 167, 86);
         transition: 0.25s;
+    }
+	.about-container{
+        width: 500px;
+        height: 600px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+    .about-list{
+        display: inline-block;
+        text-align: left;
+        padding: 0;
     }
 	@media (max-width: 1280px) {
 		#about {
