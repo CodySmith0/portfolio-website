@@ -56,7 +56,7 @@
           };
 
           try {
-            const response = await fetch('https://3a6e4f05.portfolio-website-2k7.pages.dev:3000/api/send-email', {
+            const response = await fetch('https://fizzled.dev/api/send-email', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
