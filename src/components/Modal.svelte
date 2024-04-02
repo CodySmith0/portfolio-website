@@ -9,49 +9,79 @@
 
     export let isOpen;
     export let title;
-      let stackIndex = modals.length
-      let email = '';
-      let subject = '';
-      let message2 = '';
+
+    let stackIndex = modals.length;
+    let email = '';
+    let subject = '';
+    let message2 = '';
+    let errorAppended = false;
+
+    
+    function displayMessage(message, color) {
+        const modalContent = document.querySelector('.modal-content');
+        
+        modalContent.querySelectorAll('p').forEach(p => p.remove());
+        const messageElement = document.createElement('p');
+        
+        messageElement.textContent = message;
+        messageElement.style.color = color;
+        messageElement.style.marginTop = '10px';
+        messageElement.style.fontSize = '14px';
+        messageElement.style.fontWeight = 'bold';
+        modalContent.style.height = '310px';
+        modalContent.appendChild(messageElement);
+    }
 
     function validateEmail() {
+      const errorText = document.createElement('p');
+      const modalContent = document.querySelector('.modal-content');
       if (!isValidEmail(email)) {
+          if (!errorAppended){
+              displayMessage('Please enter a valid Email Address', 'red');
+          }
           return false;
       }
       return true;
     }
   
-      $: isFormFilled = email && subject && message2;
+    $: isFormFilled = email && subject && message2;
     
     async function handleSubmit() {
       if (validateEmail()) {
         if (isFormFilled) {
-        const requestBody = {
-          email: email,
-          subject: subject,
-          message2: message2
-        };
+          const requestBody = {
+            email: email,
+            subject: subject,
+            message2: message2
+          };
 
-        fetch('http://localhost:3000/api/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(requestBody)
-          })
-          .then(response => {
-            if (response.ok) {
-              console.log('Email sent successfully');
-              closeModal();
-            } else {
-              console.error('Failed to send email');
-            }
-          })
-          .catch(error => {
+          try {
+            const response = await fetch('http://localhost:3000/api/send-email', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(requestBody)
+            });
+
+          if (response.ok) {
+            displayMessage('Email sent successfully', 'green');
+            email = '';
+            subject = '';
+            message2 = '';
+          } else {
+            // Handle non-OK responses (e.g., 400, 500)
+            return response.text().then(text => {
+              displayMessage('Email failed to send. Contact me at: cody@fizzled.com', 'red');
+              console.error('Failed to send email:', text);
+            });
+           }
+          } catch (error) {
+            displayMessage('Error sending email. Contact me at: cody@fizzled.com', 'red');
             console.error('Error sending email:', error);
-          })
+         }
         }
-        }
+      }
     }
 </script>
 
@@ -84,7 +114,6 @@
   input {
     border-radius: 6px;
   }
-
   #message {
     width: 99.65%;
     height: 149px;
@@ -145,8 +174,7 @@
     background: #CDD7D6;
     pointer-events: auto;
     animation-name: animatemodal;
-    animation-duration: 0.5s
-    
+    animation-duration: 0.5
   }
   .modal-header {
     display: flex;

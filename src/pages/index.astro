@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
-import About from '../components/AboutContent.svelte';
 ---
 
 <script>
@@ -50,6 +49,37 @@ import About from '../components/AboutContent.svelte';
     	let time = (Date.now() - (new Date('02/02/2004')).getTime()) / (1000 * 60 * 60 * 24 * 365.242199); // milliseconds per year
     	ageElement.innerText = time.toString().substring(0, 12);
     }, 50);
+
+	document.addEventListener("DOMContentLoaded", function () {
+    	const username = 'Fizzled04';
+    	const apiUrl = `https://api.github.com/users/${username}/repos`;
+
+    	fetch(apiUrl)
+    	    .then(response => response.json())
+    	    .then(repos => {
+    	        let totalCommits = 0;
+    	        repos.forEach(repo => {
+    	            totalCommits += repo.size;
+    	        });
+    	        document.getElementById('commitCount').textContent = totalCommits;
+    	    })
+    	    .catch(error => {
+    	        console.error('Error fetching GitHub commits:', error);
+    	    });
+	});
+
+	const leetcodeUsername = "Fizzled";
+
+	fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeUsername}`)
+		.then((response) => response.json())
+		.then((data) => {
+			const totalSolved = data.totalSolved;
+    		document.getElementById("leetcodeSolved").textContent = ` ${totalSolved}`;
+		})
+		.catch((error) => {
+			console.error("Error fetching LeetCode data:", error);
+		});
+
 
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
@@ -100,16 +130,16 @@ import About from '../components/AboutContent.svelte';
 				<svg class="profile-svg" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
 					<image xlink:href="profile.svg" width="100%" height="100%" />
 				</svg>
-				<div id="about-text" style="color: #102542; font-size: 20px; font-weight: bold;">
+				<div id="about-text">
 					I'm an aspiring software developer with a love of problem solving. I frequently take on projects that push the boundaries of my knowledge to further develop my abilities as a programmer. My goal with every project I take on is to produce not only an effective product but one that is enjoyable for the end user as well, this website included. If I'm not programming, I'm most likely playing videogames, doing school work, or hanging out with my dogs. 
 				</div>
 			</div>
 			<div id="spacer"/>
 			<div class="about-container">
 				<ul class="about-list">
-					<li>I am <span id=age></span> years old</li>
-					<li>I have made <span id="commits"></span> Github commits this year</li>
-					<li>AHHHH</li>
+					<li>I am <span id=age style ="color:#DE541E"></span> years old</li>
+					<li><span id="commitCount" style ="color:#DE541E"></span> <a href="https://github.com/Fizzled04" target="_blank">Github</a> commits made this year</li>
+					<li><span id="leetcodeSolved" style ="color:#DE541E"></span> <a href="https://leetcode.com/Fizzled/" target="_blank">Leetcode</a> problems solved</li>
 				</ul>
 			</div>
 		</div>
@@ -192,110 +222,59 @@ import About from '../components/AboutContent.svelte';
 		</div>
 	</div>
 	</section>
+	<footer>
+		Developed by Cody, built using <span style="color: #DE541E">Astro</span> and <span style="color: #DE541E"> Svelte.js</span>
+	</footer>
 </Layout>
 
 
 <style>
-	#spacer {
+	footer{
+		height: 3rem;
+		background-color: #CDD7D6;
+		text-align: center;
+		font-size: 16px;
+		color: #102542;
+		font-weight: bold;
+		
+		box-shadow: 0px -5px 10px #9bc2bf;
+	}
+	#spacer{
 		width:200px;
 	}
-	#tech-box {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-		height: 100px;
-		width: 160px;
-		border: double 3px transparent;
-		border-image-slice: 1;
-		border-width: 4px;
-		background-image: linear-gradient(#CDD7D6, #CDD7D6),radial-gradient(circle at bottom right, #102542, #DE541E);
-		border-radius: 10px;
-		background-clip: content-box, border-box;
-		overflow: hidden;
-		box-sizing: border-box;
-		margin: 10px;
-		transition: all 1000ms ease-in;
-	}
-	#tech-box.hidden {
-		opacity: 0;
-	}
-	#tech-box.show {
-		opacity: 1;
-	}
-	#icons #tech-row:nth-child(1)  #tech-box:nth-child(1) {
-		transition-delay: 0s;
-	}
-	#icons #tech-row:nth-child(1)  #tech-box:nth-child(2) {
-		transition-delay: .25s;
-	}
-	#icons #tech-row:nth-child(1)  #tech-box:nth-child(3) {
-		transition-delay: .5s;
-	}
-	#icons #tech-row:nth-child(2)  #tech-box:nth-child(1) {
-		transition-delay: 0s;
-	}
-	#icons #tech-row:nth-child(2)  #tech-box:nth-child(2) {
-		transition-delay: .25s;
-	}
-	#icons #tech-row:nth-child(2)  #tech-box:nth-child(3) {
-		transition-delay: .5s;
-	}
-	#icons #tech-row:nth-child(2)  #tech-box:nth-child(4) {
-		transition-delay: .75s;
-	}
-	#icons #tech-row:nth-child(3)  #tech-box:nth-child(1) {
-		transition-delay: .25s;
-	}
-	#icons #tech-row:nth-child(3)  #tech-box:nth-child(2) {
-		transition-delay: .5s;
-	}
-	#icons #tech-row:nth-child(3)  #tech-box:nth-child(3) {
-		transition-delay: .75s;
-	}
-	#tech-row {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
-	#icons {
-		width: 500px;
-		display:  flex;
-		justify-content: center;
-	}
-	#about-content {
+	#about-content{ 
 		display: flex;
 		justify-content: center;
 		width: 100%;
 	}
-	.profile-svg {
+	.profile-svg{
 		width: 300px;
 		height: auto;
 	}
-	#profile-content {
+	#profile-content{
 		position: relative;
 		display: flex;
-		width: 100%;
 		align-items: center;
 		flex-direction: column;
 		width: 500px;
 	}
-	#profile-content.hidden {
+	#profile-content.hidden{
 		opacity: 0;
+
 		filter: blur(4px);
 		transform: translateX(-100%);
 		transition: all 1000ms ease-in-out;
 	}
-	#profile-content.show {
+	#profile-content.show{
 		opacity: 1;
 		filter: blur(0);
 		transform: translateX(0);
 	}
-	section {
+	section{
 		flex: 1;
 		padding: 2rem;
 	}
-	main {
+	main{
 		margin: auto;
 		padding: 0px;
 		width: 800px;
@@ -304,13 +283,13 @@ import About from '../components/AboutContent.svelte';
 		font-size: 20px;
 		line-height: 1.6;
 	}
-	h2 {
+	h2{
 		text-align: center;
 		font-size: 50px;
 		color: #102542;
 		position: relative;
 	}
-	#about-heading::after {
+	#about-heading::after{
 		content: '';
 		position: absolute;
 		bottom: 0.2em;
@@ -323,30 +302,35 @@ import About from '../components/AboutContent.svelte';
 		transform: translateX(-50%);
 		border-radius: 10px;
 	}
-	#about-heading.show::after {
+	#about-heading.show::after{
 		opacity: 1;
 		transform: translate3d(-50%, 0.2em, 0);
 		transform-origin: center;
 	}
-	#home {
+	#home{
 		height: 100vh;
 		background-color: #9bc2bf;
 		box-sizing: border-box;
 		position: relative;
 		width: 100%;
 	}
-	#about {
+	#about{
 		height: 53rem;
 		background-color: #CDD7D6;
 		position: relative;
 		z-index: 2;
 	}
-	#projects {
+	#about-text{
+		color: #102542; 
+		font-size: 20px;
+		font-weight: bold;
+	}
+	#projects{
 		position: relative;
 		z-index: 3;
 		background-color: #CDD7D6;
 	}
-	#project-heading::after {
+	#project-heading::after{
 		content: '';
 		position: absolute;
 		bottom: 0.2em;
@@ -359,7 +343,7 @@ import About from '../components/AboutContent.svelte';
 		transform: translateX(-50%);
 		border-radius: 10px;
 	}
-	#project-heading.show::after {
+	#project-heading.show::after{
 		opacity: 1;
 		transform: translate3d(-50%, 0.3em, 0);
 		transform-origin: center;
@@ -371,11 +355,11 @@ import About from '../components/AboutContent.svelte';
 		justify-content: flex-start;
 		clear: both;
 	}
-	.project-item-left {
+	.project-item-left{
 		align-self: flex-start;
 		margin-left: 1rem;
 	}
-	.project-item-right {
+	.project-item-right{
 		float: right;
 		margin-right: 1rem;
 	}
@@ -392,14 +376,14 @@ import About from '../components/AboutContent.svelte';
 		margin-left: 25px;
 		max-width: 900px;
   		height: auto;
-	}
-	.project-image-container-left img.hidden {
+	} 
+	.project-image-container-left img.hidden{
 		opacity: 0;
 		filter: blur(4px);
 		transform: translateX(-100%);
 		transition: all 1000ms ease-in-out;
 	}
-	.project-image-container-left img.show {
+	.project-image-container-left img.show{
 		opacity: 1;
 		filter: blur(0);
 		transform: translateX(0);
@@ -420,13 +404,13 @@ import About from '../components/AboutContent.svelte';
   		height: auto;
 		float: right;
 	}
-	.project-image-container-right img.hidden {
+	.project-image-container-right img.hidden{
 		opacity: 0;
 		filter: blur(4px);
 		transform: translateX(100%);
 		transition: all 1000ms ease-in-out;
 	}
-	.project-image-container-right img.show {
+	.project-image-container-right img.show{
 		opacity: 1;
 		filter: blur(0);
 		transform: translateX(0);
@@ -437,7 +421,7 @@ import About from '../components/AboutContent.svelte';
 		margin-top: 1rem;
 		margin-left: 2rem;
 	}
-	.project-text-container-right{
+	.project-text-container-right {
 		height: 550px;
 		width: 600px;
 		margin-top: 1rem;
@@ -475,7 +459,7 @@ import About from '../components/AboutContent.svelte';
         transition: .25s;
 		width: 100px;
 	}
-	.project-button:hover {
+	.project-button:hover{
         background-color: rgb(202, 167, 86);
         transition: 0.25s;
     }
@@ -483,17 +467,29 @@ import About from '../components/AboutContent.svelte';
         width: 500px;
         height: 600px;
         display: flex;
-        justify-content: left;
+        justify-content: center;
         align-items: center;
+		font-size: 26px;
+		font-weight: bold;
     }
     .about-list{
         display: inline-block;
         text-align: left;
         padding: 0;
+		color:#102542;
     }
-	@media (max-width: 1280px) {
+	.about-list li{
+		padding-top: 1.5rem;
+	}
+	@media (max-width: 1280px){
+		#spacer {
+			width: 100px;
+			height: 0px;
+		}
+	}
+	@media (max-width: 1180px){
 		#about {
-			height: 85rem;
+			height: 60rem;
 		}
 		#about-content {
 			align-items: center;
@@ -501,10 +497,13 @@ import About from '../components/AboutContent.svelte';
 		}
 		#spacer {
 			width: 0px;
-			height: 100px;
+			height: 0px;
+		}
+		.about-container{
+			height: 300px;
 		}
 	}
-	@media (max-width: 1700px) {
+	@media (max-width: 1700px){
 		.project-image-container-left{
 			margin-top: .8rem;
 			width: 800px;
@@ -532,7 +531,7 @@ import About from '../components/AboutContent.svelte';
 			height: 440px;
 		}
 	}
-	@media (max-width: 1500px) {
+	@media (max-width: 1500px){
 		.project-image-container-left{
 			width: 640px;
 			height: 352px;
@@ -559,7 +558,7 @@ import About from '../components/AboutContent.svelte';
 			height: 352px;
 		}
 	}
-	@media (max-width: 1350px) {
+	@media (max-width: 1350px){
 		.project-image-container-left{
 			width: 512px;
 			height: 281px;
@@ -602,7 +601,7 @@ import About from '../components/AboutContent.svelte';
 			height: 281px;
 		}
 	}
-	@media (max-width: 1210px) {
+	@media (max-width: 1210px){
 		.project-image-container-left{
 			width: 410px;
 			height: 224px;
@@ -645,7 +644,7 @@ import About from '../components/AboutContent.svelte';
 			height: 224px;
 		}
 	}
-	@media (max-width: 1110px) {
+	@media (max-width: 1110px){
 		.project-image-container-left{
 			width: 328px;
 			height: 179px;
@@ -672,7 +671,7 @@ import About from '../components/AboutContent.svelte';
 			height: 224px;
 		}
 	}
-	@media (max-width: 1030px) {
+	@media (max-width: 1030px){
 		.project-image-container-left{
 			width: 262px;
 			height: 143px;
@@ -699,7 +698,7 @@ import About from '../components/AboutContent.svelte';
 			height: 224px;
 		}
 	}
-	@media (max-width: 960px) {
+	@media (max-width: 960px){
 		.project-image-container-left{
 			width: 210px;
 			height: 114px;
@@ -726,7 +725,7 @@ import About from '../components/AboutContent.svelte';
 			height: 224px;
 		}
 	}
-	@media (max-width: 910px) {
+	@media (max-width: 910px){
 		.project-image-container-left{
 			width: 0px;
 			height: 0px;
@@ -768,5 +767,44 @@ import About from '../components/AboutContent.svelte';
         	margin-left: auto;
         	margin-right: auto;
 		}
+	}
+	@media (max-width: 660px){
+		.project{
+			margin-bottom: 0.98304rem;
+		}
+		.project-text-container-left{
+			height: 224px;
+			width:  400px;
+		}
+		.project-text-container-right{
+			height: 224px;
+			width: 400px;
+		}
+		.project-text{
+			font-size: 12px
+		}
+		.project-button{
+			padding: 8px 16px;
+			font-size: 12px;
+			margin-top: 10px;
+		}
+		.technologies{
+			font-size: 12px;
+			display: block;
+		}
+		.project-title{
+			font-size: 25px;
+		}
+	}
+	@media (max-width: 540px){
+		#about-text {
+			font-size: 18px;
+		}
+		#profile-content {
+			width: 400px;
+		}
+		.about-list li{
+			font-size: 20px;
+    	}
 	}
 </style>
