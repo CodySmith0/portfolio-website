@@ -56,7 +56,7 @@
           };
 
           try {
-            const response = await fetch('https://fizzled.dev/api/send-email', {
+            const response = await fetch('https://3a6e4f05.portfolio-website-2k7.pages.dev:3000/api/send-email', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -70,7 +70,6 @@
             subject = '';
             message2 = '';
           } else {
-            // Handle non-OK responses (e.g., 400, 500)
             return response.text().then(text => {
               displayMessage('Email failed to send. Contact me at: cody@fizzled.dev', 'red');
               console.error('Failed to send email:', text);
