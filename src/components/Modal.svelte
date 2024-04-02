@@ -1,6 +1,6 @@
 <script>
     import { closeModal, closeAllModals, openModal, modals } from 'svelte-modals'
-
+    
     function isValidEmail(email) {
       // Regular expression for validating email addresses
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,7 +56,7 @@
           };
 
           try {
-            const response = await fetch('http://localhost:3000/api/send-email', {
+            const response = await fetch('fizzled.dev/api/send-email', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'

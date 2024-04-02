@@ -5,17 +5,21 @@ import Navigation from '../components/Navigation.astro';
 
 <script>
 	const words = ["Software Developer", "CS Student",  "Tech Enthusiast"];
+	const wordElement = document.getElementById('word');
 	let i = 0;
 	let timer;
+	
 
     function typingEffect() {
 		let word = words[i].split("");
 		var loopTyping = function() {
-		if (word.length > 0) {
-			document.getElementById('word').innerHTML += word.shift();
+			if (word.length > 0) {
+				if (wordElement) {
+  					wordElement.innerHTML += word.shift();
+				}
 	  		} else {
 				setTimeout(() => deletingEffect(), 1500);
-		  		return false;
+				return false;
 	  		};
 		timer = setTimeout(loopTyping, 25);
 		};
@@ -27,7 +31,9 @@ import Navigation from '../components/Navigation.astro';
 	 	var loopDeleting = function() {
 			if (word.length > 0) {
 				word.pop();
-				document.getElementById('word').innerHTML = word.join("");
+				if (wordElement) {
+					wordElement.innerHTML = word.join("");
+				}
 		  	} else {
 			 	if (words.length > (i + 1)) {
 					i++;
@@ -47,21 +53,26 @@ import Navigation from '../components/Navigation.astro';
 
     setInterval(() => {
     	let time = (Date.now() - (new Date('02/02/2004')).getTime()) / (1000 * 60 * 60 * 24 * 365.242199); // milliseconds per year
-    	ageElement.innerText = time.toString().substring(0, 12);
+    	if (ageElement) {
+    		ageElement.innerText = time.toString().substring(0, 12);
+		}
     }, 50);
 
 	document.addEventListener("DOMContentLoaded", function () {
     	const username = 'Fizzled04';
     	const apiUrl = `https://api.github.com/users/${username}/repos`;
+		const commitElement = document.getElementById('commitCount');
 
     	fetch(apiUrl)
     	    .then(response => response.json())
     	    .then(repos => {
     	        let totalCommits = 0;
-    	        repos.forEach(repo => {
-    	            totalCommits += repo.size;
-    	        });
-    	        document.getElementById('commitCount').textContent = totalCommits;
+    	        repos.forEach((repo: { size: number }) => {
+				 	totalCommits += repo.size;
+				});
+				if(commitElement){
+    	        	commitElement.textContent = totalCommits.toString();
+				}
     	    })
     	    .catch(error => {
     	        console.error('Error fetching GitHub commits:', error);
@@ -69,12 +80,14 @@ import Navigation from '../components/Navigation.astro';
 	});
 
 	const leetcodeUsername = "Fizzled";
-
+	const leetcodeElement = document.getElementById('leetcodeSolved');
 	fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeUsername}`)
 		.then((response) => response.json())
 		.then((data) => {
 			const totalSolved = data.totalSolved;
-    		document.getElementById("leetcodeSolved").textContent = ` ${totalSolved}`;
+			if(leetcodeElement){
+    			leetcodeElement.textContent = ` ${totalSolved}`;
+			}
 		})
 		.catch((error) => {
 			console.error("Error fetching LeetCode data:", error);
@@ -98,9 +111,12 @@ import Navigation from '../components/Navigation.astro';
 	const section = document.getElementById('projects');
 
  	function adjustSectionHeight() {
- 	  	section.style.height = 'auto';
- 	  	const contentHeight = section.scrollHeight;
- 	  	section.style.height = contentHeight + 'px';
+		const section = document.getElementById('projects');
+    	if (section) {
+    	    section.style.height = 'auto';
+    	    const contentHeight = section.scrollHeight;
+    	    section.style.height = contentHeight + 'px';
+    }
  	}
 
  	adjustSectionHeight();
