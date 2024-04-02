@@ -56,7 +56,7 @@
           };
 
           try {
-            const response = await fetch('fizzled.dev/api/send-email', {
+            const response = await fetch('https://fizzled.dev/api/send-email', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -72,12 +72,12 @@
           } else {
             // Handle non-OK responses (e.g., 400, 500)
             return response.text().then(text => {
-              displayMessage('Email failed to send. Contact me at: cody@fizzled.com', 'red');
+              displayMessage('Email failed to send. Contact me at: cody@fizzled.dev', 'red');
               console.error('Failed to send email:', text);
             });
            }
           } catch (error) {
-            displayMessage('Error sending email. Contact me at: cody@fizzled.com', 'red');
+            displayMessage('Error sending email. Contact me at: cody@fizzled.dev', 'red');
             console.error('Error sending email:', error);
          }
         }
