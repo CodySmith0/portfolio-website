@@ -127,7 +127,7 @@ import Navigation from '../components/Navigation.astro';
 	<Navigation/>
 	<section id="home">
 		<div style="display:flex; justify-content:center; align-items:center; height:calc(100vh - 6.25rem)">
-			<h1 style="text-align: center; font-size: 50px; position: fixed;">
+			<h1>
 				<div style="color: #102542">
 					Hey, I'm Cody.
 				</div>
@@ -245,6 +245,11 @@ import Navigation from '../components/Navigation.astro';
 
 
 <style>
+	h1{
+		text-align: center; 
+		font-size: 50px; 
+		position: fixed;
+	}
 	footer{
 		height: 3rem;
 		background-color: #CDD7D6;
@@ -372,6 +377,7 @@ import Navigation from '../components/Navigation.astro';
 		clear: both;
 	}
 	.project-item-left{
+		display: flex;
 		align-self: flex-start;
 		margin-left: 1rem;
 	}
@@ -436,6 +442,7 @@ import Navigation from '../components/Navigation.astro';
 		width: 600px;
 		margin-top: 1rem;
 		margin-left: 2rem;
+		
 	}
 	.project-text-container-right {
 		height: 550px;
@@ -785,16 +792,19 @@ import Navigation from '../components/Navigation.astro';
 		}
 	}
 	@media (max-width: 660px){
+		h1{
+			font-size: 30px;
+		}
 		.project{
 			margin-bottom: 0.98304rem;
 		}
 		.project-text-container-left{
-			height: 224px;
-			width:  400px;
+			
+			width:  325px;
 		}
 		.project-text-container-right{
-			height: 224px;
-			width: 400px;
+			
+			width: 325px;
 		}
 		.project-text{
 			font-size: 12px
@@ -818,6 +828,17 @@ import Navigation from '../components/Navigation.astro';
 		}
 		#profile-content {
 			width: 400px;
+		}
+		.about-list li{
+			font-size: 20px;
+    	}
+	}
+	@media (max-width: 415px){
+		#about-text {
+			font-size: 16px;
+		}
+		#profile-content {
+			width: 350px;
 		}
 		.about-list li{
 			font-size: 20px;
