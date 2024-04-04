@@ -50,7 +50,7 @@
       if (validateEmail()) {
         if (isFormFilled) {
           const requestBody = {
-            email: email,
+            email: "<" + email + ">",
             subject: subject,
             message2: message2
           };
