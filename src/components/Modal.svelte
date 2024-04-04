@@ -49,8 +49,9 @@
     async function handleSubmit() {
       if (validateEmail()) {
         if (isFormFilled) {
+          modifiedEmail = '<' + email + '>' + " <mailgun@sandbox4543c9a06b8b4bd4b545664162f6f681.mailgun.org>"
           const requestBody = {
-            email: "<" + email + ">",
+            email: modifiedEmail,
             subject: subject,
             message2: message2
           };
