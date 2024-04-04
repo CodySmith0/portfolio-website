@@ -56,7 +56,7 @@
           };
 
           try {
-            const response = await fetch('https://emailscript.fizzled04.workers.dev/api/send-email', {
+            const response = await fetch('https://emailscript.fizzled04.workers.dev', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
