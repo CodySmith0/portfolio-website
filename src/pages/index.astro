@@ -57,7 +57,8 @@ import Navigation from '../components/Navigation.astro';
     		ageElement.innerText = time.toString().substring(0, 12);
 		}
     }, 50);
-
+	
+	/*
 	document.addEventListener("DOMContentLoaded", function () {
     	const username = 'Fizzled04';
     	const apiUrl = `https://api.github.com/users/${username}/repos`;
@@ -78,6 +79,7 @@ import Navigation from '../components/Navigation.astro';
     	        console.error('Error fetching GitHub commits:', error);
     	    });
 	});
+	*/
 
 	const leetcodeUsername = "Fizzled";
 	const leetcodeElement = document.getElementById('leetcodeSolved');
@@ -154,7 +156,7 @@ import Navigation from '../components/Navigation.astro';
 			<div class="about-container">
 				<ul class="about-list">
 					<li>I am <span id=age style ="color:#DE541E"></span> years old</li>
-					<li><span id="commitCount" style ="color:#DE541E"></span> <a href="https://github.com/Fizzled04" target="_blank">Github</a> commits made this year</li>
+					<li><span id="commitCount" style ="color:#DE541E"></span> Check out my <a href="https://github.com/Fizzled04" target="_blank">Github</a> here</li>
 					<li><span id="leetcodeSolved" style ="color:#DE541E"></span> <a href="https://leetcode.com/Fizzled/" target="_blank">Leetcode</a> problems solved</li>
 				</ul>
 			</div>
