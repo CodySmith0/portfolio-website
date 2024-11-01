@@ -125,7 +125,7 @@ import Navigation from '../components/Navigation.astro';
  	window.addEventListener('resize', adjustSectionHeight);
 </script>
 
-<Layout title="Fizzled">
+<Layout title="Fizzled Software Developement and More">
 	<Navigation/>
 	<section id="home">
 		<div style="display:flex; justify-content:center; align-items:center; height:calc(100vh - 6.25rem)">
@@ -156,8 +156,8 @@ import Navigation from '../components/Navigation.astro';
 			<div class="about-container">
 				<ul class="about-list">
 					<li>I am <span id=age style ="color:#DE541E"></span> years old</li>
-					<li>Check out my <span id="commitCount" style ="color:#DE541E">Github </span><a href="https://github.com/Fizzled04" target="_blank">here</a></li>
-					<li><span id="leetcodeSolved" style ="color:#DE541E"></span> <a href="https://leetcode.com/Fizzled/" target="_blank">Leetcode</a> problems solved</li>
+					<li>Check out <span id="commitCount" style ="color:#DE541E">my </span><a href="https://github.com/Fizzled04" rel="noopener">Github</a></li>
+					<li><span id="leetcodeSolved" style ="color:#DE541E"></span> <a href="https://leetcode.com/Fizzled/" rel="noopener">Leetcode</a> problems solved</li>
 				</ul>
 			</div>
 		</div>
@@ -169,7 +169,7 @@ import Navigation from '../components/Navigation.astro';
 		<div class="project">
 			<div class="project project-item-left">
 				<div class="project-image-container-left">
-					<img class="hidden" src="fizz.png" alt="Fizz in use.">
+					<img class="hidden" src="fizz.jpg" alt="Fizz in use.">
 				</div>
 				<div class="project-text-container-left">
 					<div class="project-title">
@@ -179,12 +179,12 @@ import Navigation from '../components/Navigation.astro';
 						</span>
 					</div>
 					<div class="project-text">
-						Fizz is a user-oriented, open source, Discord bot that acts as a virtual casino. It was created based on a bot I had made in high school, which was a multipurpose bot featuring various niche features. I decided to take this bot and focus on the gambling aspect, creating a handful of classic casino games such as Slots, Blackjack, and Coinflipping. This came at the expense of removing features such as Reddit searching and chat interaction, but I believe this allowed me to produce a greater, more focused end product for users.
+						Fizz is a user-oriented, open-source Discord bot that acts as a virtual casino. It was created based on a bot I had made in high school, which was a multipurpose bot featuring various niche features. I decided to take this bot and focus on the gambling aspect, creating a handful of classic casino games such as Slots, Blackjack, and Coinflipping. This came at the expense of removing features such as Reddit searching and chat interaction, but I believe this allowed me to produce a greater, more focused end product for users.
 					</div>
-					<a class="project-button" href="https://discord.com/oauth2/authorize?client_id=1242149263950090342" target="_blank">
+					<a class="project-button" href="https://discord.com/oauth2/authorize?client_id=1242149263950090342" rel="noopener">
 						Invite
 					</a>
-					<a class="project-button" href="https://github.com/Fizzled04/discord-fizz" target="_blank">
+					<a class="project-button" href="https://github.com/Fizzled04/discord-fizz" rel="noopener">
 						Github
 					</a>
 				</div>
@@ -205,12 +205,10 @@ import Navigation from '../components/Navigation.astro';
 					<a class="project-button" href="https:/otenba.style" target="_blank">
 						Live Version
 					</a>
-					<a class="project-button" href="https:/fizzled.dev" target="_blank">
-						Github
-					</a>
+
 				</div>
 				<div class="project-image-container-right">
-					<img class="hidden" src="otenba.PNG" alt="Screenshot of the Otenba Style homepage">
+					<img class="hidden" src="otenba.jpg" alt="Temp photo until I have some projects">
 				</div>
 			</div>
 		</div>
@@ -228,12 +226,11 @@ import Navigation from '../components/Navigation.astro';
 					</span>
 				</div>
 				<div class="project-text">
-
 				</div>
-				<a class="project-button" href="https:/fizzled.dev" target="_blank">
+				<a class="project-button" href="https:/fizzled.dev" rel="noopener">
 					Live Version
 				</a>
-				<a class="project-button" href="https:/fizzled.dev" target="_blank">
+				<a class="project-button" href="https:/fizzled.dev" rel="noopener">
 					Github
 				</a>
 			</div>
@@ -847,3 +844,4 @@ import Navigation from '../components/Navigation.astro';
     	}
 	}
 </style>
+
