@@ -2,9 +2,9 @@
     import { closeModal, closeAllModals, openModal, modals } from 'svelte-modals'
     
     function isValidEmail(email) {
-      // Regular expression for validating email addresses
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
+        // Regular expression for validating email addresses
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }   
 
     export let isOpen;
@@ -194,7 +194,6 @@
     border: 1px solid #102542;
     outline: none;
     box-sizing: border-box;
-    
     box-shadow: 0 0 0px #102542;
     transition: box-shadow 0.1s ease;
   }
