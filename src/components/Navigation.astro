@@ -33,14 +33,18 @@ import Contact from '../components/Contact.svelte'
         background-color: rgba(155, 194, 191, .98);
     }
     a {
-        float: left;
-        font-weight: bold;
-        font-size: 18px;
-        color: #102542;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-        text-align: center;
+    float: left;
+    font-weight: bold;
+    font-size: 18px;
+    color: #102542;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    transition: color 0.25s ease;
+    }
+    a:hover {
+       color: #DE541E;
     }
     #contact {
         position: fixed;

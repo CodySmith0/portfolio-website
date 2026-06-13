@@ -48,15 +48,6 @@ import Navigation from '../components/Navigation.astro';
 	  	loopDeleting();
   	};
 	typingEffect();
-
-	let ageElement = document.getElementById("age");
-
-    setInterval(() => {
-    	let time = (Date.now() - (new Date('02/02/2004')).getTime()) / (1000 * 60 * 60 * 24 * 365.242199); // milliseconds per year
-    	if (ageElement) {
-    		ageElement.innerText = time.toString().substring(0, 12);
-		}
-    }, 50);
 	
 	/*
 	document.addEventListener("DOMContentLoaded", function () {
@@ -80,8 +71,8 @@ import Navigation from '../components/Navigation.astro';
     	    });
 	});
 	*/
-
-	const leetcodeUsername = "Fizzled";
+	/*
+	const leetcodeUsername = "CodySmith0";
 	const leetcodeElement = document.getElementById('leetcodeSolved');
 	fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeUsername}`)
 		.then((response) => response.json())
@@ -94,11 +85,10 @@ import Navigation from '../components/Navigation.astro';
 		.catch((error) => {
 			console.error("Error fetching LeetCode data:", error);
 		});
-
+	*/
 
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
-			console.log(entry)
 			if (entry.isIntersecting) {
 				entry.target.classList.add('show');
 			} else {
@@ -125,7 +115,7 @@ import Navigation from '../components/Navigation.astro';
  	window.addEventListener('resize', adjustSectionHeight);
 </script>
 
-<Layout title="Fizzled Software Developement and More">
+<Layout title="Cody Smith's Portfolio">
 	<Navigation/>
 	<section id="home">
 		<div style="display:flex; justify-content:center; align-items:center; height:calc(100vh - 6.25rem)">
@@ -149,15 +139,14 @@ import Navigation from '../components/Navigation.astro';
 					<image xlink:href="profile.svg" width="100%" height="100%" />
 				</svg>
 				<div id="about-text">
-					I'm an aspiring software developer with a love of problem solving. I frequently take on projects that push the boundaries of my knowledge to further develop my abilities as a programmer. My goal with every project I take on is to produce not only an effective product but one that is enjoyable for the end user as well, this website included. If I'm not programming, I'm most likely playing video games, doing school work, or hanging out with my dogs. 
+					I'm a senior Computer Science student at Western Governors University with a passion for building software that's both effective and enjoyable to use. From freelance web development to open-source Discord bots, I take on projects that push me to grow as a developer. I'm proficient in C++, Python, Java, and React, and I'm currently seeking full-time opportunities in software development.
 				</div>
 			</div>
 			<div id="spacer"/>
 			<div class="about-container">
 				<ul class="about-list">
-					<li>I am <span id=age style ="color:#DE541E"></span> years old</li>
 					<li>Check out <span id="commitCount" style ="color:#DE541E">my </span><a href="https://github.com/CodySmith0" rel="noopener">Github</a></li>
-					<!-- <li><span id="leetcodeSolved" style ="color:#DE541E"></span> <a href="https://leetcode.com/Fizzled/" rel="noopener">Leetcode</a> problems solved</li> --> 
+					<!-- <li><span id="leetcodeSolved" style ="color:#DE541E"></span> <a href="https://leetcode.com/CodySmith0/" rel="noopener">Leetcode</a> problems solved</li> --> 
 				</ul>
 			</div>
 		</div>
@@ -179,13 +168,10 @@ import Navigation from '../components/Navigation.astro';
 						</span>
 					</div>
 					<div class="project-text">
-						Fizz is a user-oriented, open-source Discord bot that acts as a virtual casino. It was created based on a bot I had made in high school, which was a multipurpose bot featuring various niche features. I decided to take this bot and focus on the gambling aspect, creating a handful of classic casino games such as Slots, Blackjack, and Coinflipping. This came at the expense of removing features such as Reddit searching and chat interaction, but I believe this allowed me to produce a greater, more focused end product for users.
+						Fizz is an open-source Discord bot built with Python and discord.py, designed around a fully featured virtual casino experience. Players can enjoy classic games including Slots, Blackjack, and Coinflipping — all within Discord. The project evolved from a multipurpose bot I originally built in high school, refined into a focused and polished product for a wider audience.
 					</div>
 					<a class="project-button" href="https://discord.com/oauth2/authorize?client_id=1242149263950090342" rel="noopener">
 						Invite
-					</a>
-					<a class="project-button" href="https://github.com/CodySmith0/discord-fizz" rel="noopener">
-						Github
 					</a>
 				</div>
 			</div>
@@ -200,7 +186,7 @@ import Navigation from '../components/Navigation.astro';
 						</span>
 					</div>
 					<div class="project-text">
-						The Otenba Style website was a project I was hired on as a freelancer to create, I was granted permission to share the project here(no source code for obvious reasons). The website acts as a user friendly way to be introduced to the business and their works along with the pricing of said works. The website assisted in generating over $5,000 of sales within the first couple weeks of launching.
+						Otenba Style's webpage is a freelance project I was commissioned to build from the ground up to match the clients wants and needs. The site serves as a polished storefront and portfolio for the business, designed to convert visitors into customers. Built with Astro and Svelte, it helped generate over $5,000 in sales within the first two weeks of launching.
 					</div>
 					<a class="project-button" href="https://otenba.style" rel="noopener">
 						Live Version
@@ -213,7 +199,7 @@ import Navigation from '../components/Navigation.astro';
 			</div>
 		</div>
 	</div>
-	<div class="project">
+	<!--<div class="project">
 		<div class="project project-item-left">
 			<div class="project-image-container-left">
 				<img class="hidden" src="filler-image.jpg" alt="Temp photo until I have some projects">
@@ -227,15 +213,15 @@ import Navigation from '../components/Navigation.astro';
 				</div>
 				<div class="project-text">
 				</div>
-				<a class="project-button" href="https:/fizzled.dev" rel="noopener">
+				<a class="project-button" href="" rel="noopener">
 					Live Version
 				</a>
-				<a class="project-button" href="https:/fizzled.dev" rel="noopener">
+				<a class="project-button" href="" rel="noopener">
 					Github
 				</a>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	</section>
 	<footer>
 		Developed by Cody, built using <span style="color: #DE541E">Astro</span> and <span style="color: #DE541E"> Svelte.js</span>

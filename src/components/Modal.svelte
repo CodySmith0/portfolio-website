@@ -47,42 +47,31 @@
   $: isFormFilled = email && subject && message2;
   
   async function handleSubmit() {
-    if (validateEmail()) {
-      if (isFormFilled) {
-        const modifiedEmail = '<' + email + '>' + " <mailgun@sandbox4543c9a06b8b4bd4b545664162f6f681.mailgun.org>";
-        const requestBody = {
-          email: modifiedEmail,
-          subject: subject,
-          message2: message2
-        };
-
+    if (validateEmail() && isFormFilled) {
         try {
-          const response = await fetch('https://emailscript.fizzled04.workers.dev/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-          });
+            const response = await fetch('https://formspree.io/f/mykabdkk', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    subject: subject,
+                    message: message2
+                })
+            });
 
-        if (response.ok) {
-          displayMessage('Email sent successfully', 'green');
-          email = '';
-          subject = '';
-          message2 = '';
-        } else {
-          return response.text().then(text => {
-            displayMessage('Email failed to send. Contact me at: cody@fizzled.dev', 'red');
-            console.error('Failed to send email:', text);
-          });
-         }
+            if (response.ok) {
+                displayMessage('Email sent successfully', 'green');
+                email = '';
+                subject = '';
+                message2 = '';
+            } else {
+                displayMessage('Failed to send. Try again later.', 'red');
+            }
         } catch (error) {
-          displayMessage('Error sending email. Contact me at: cody@fizzled.dev', 'red');
-          console.error('Error sending email:', error);
-       }
-      }
+            displayMessage('Error sending. Try again later.', 'red');
+        }
     }
-  }
+}
 </script>
 
 {#if isOpen}
